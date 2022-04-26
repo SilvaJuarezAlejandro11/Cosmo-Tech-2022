@@ -16,6 +16,28 @@ import {
 /*utils */
 import setAuthToken from '../utils/setAuthToken';
 
+// Activar cuenta
+export const confirmAccount = (id) => async (dispatch) => {
+  dispatch(loadUser());
+  try {
+    const res = await axios.get(`/api/users/verification/${id}`);
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch(
+      setAlert(
+        'Autorización denegada, vuelva a iniciar sesion e intente denuevo',
+        'danger'
+      )
+    );
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
 // Cargando usuario
 
 export const loadUser = () => async (dispatch) => {

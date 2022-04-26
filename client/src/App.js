@@ -64,6 +64,11 @@ function App() {
               path='/verification/account'
               component={Verification}
             />
+            <Route
+              exact
+              path='/verification/account/:id'
+              component={Verification}
+            />
             <PrivateRoute exact path='/menu' component={Projects} />
             <PrivateRoute exact path='/me/projects' component={MyProjects} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />

@@ -23,37 +23,12 @@ const mail = (email, id) => {
     },
   });
 
-  const confirmVerify = async () => {
-    try {
-      const decoded = jwt.verify(id, config.get('jwtSecret'));
-
-      let user = await User.findById(decoded.user.id);
-      let student = await Student.findById(decoded.user.id);
-      let teacher = await Teacher.findById(decoded.user.id);
-      let general = user || student || teacher;
-
-      general.verify = true;
-
-      await general.save();
-      return;
-    } catch (err) {
-      console.error(err.message);
-      return res.status(400).json({
-        errors: [
-          {
-            msg: 'Verificación denegada.',
-          },
-        ],
-      });
-    }
-  };
-
   var mailOptions = {
     from: '"BatizLab" <batiz.lab.spankybot@gmail.com>',
     to: email,
     subject: 'Verifica tu cuenta',
     html: `
-    <h2>Da click al boton de <button onClick="${confirmVerify()}"> Ingresar </button> para verificar tu cuenta</h2>`,
+    <h2>Da click <a href='http://localhost:3000/verification/account/${id}'> <<< Aquí >>> </a> para activar tu cuenta</h2>`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -63,6 +38,35 @@ const mail = (email, id) => {
     }
   });
 };
+
+// @Ruta GET api/users/verification/:id
+// @Descripción registrar usuario
+// @acceso Publica
+
+router.get('/verification/:id', async (req, res) => {
+  try {
+    const decoded = jwt.verify(req.params.id, config.get('jwtSecret'));
+
+    let user = await User.findById(decoded.user.id);
+    let student = await Student.findById(decoded.user.id);
+    let teacher = await Teacher.findById(decoded.user.id);
+    let general = user || student || teacher;
+
+    general.verify = true;
+
+    await general.save();
+    return;
+  } catch (err) {
+    console.error(err.message);
+    return res.status(400).json({
+      errors: [
+        {
+          msg: 'Verificación denegada.',
+        },
+      ],
+    });
+  }
+});
 
 // @Ruta POST api/users
 // @Descripción registrar usuario
