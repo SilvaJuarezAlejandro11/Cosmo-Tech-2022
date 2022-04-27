@@ -8,6 +8,34 @@ const { check, validationResult } = require('express-validator');
 const bycrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const nodemailer = require('nodemailer');
+
+const mail = (email, id) => {
+  var transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'batiz.lab.spankybot@gmail.com',
+      pass: 'Elgato66',
+    },
+  });
+
+  var mailOptions = {
+    from: '"BatizLab" <batiz.lab.spankybot@gmail.com>',
+    to: email,
+    subject: 'Verifica tu cuenta',
+    html: `
+    <h2>Da click <a href='https://cosmotech-6iv8-2022.herokuapp.com/verification/account/${id}'> <<< Aquí >>> </a> para activar tu cuenta</h2>`,
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log('El email no se envió', error);
+    } else {
+      console.log('email enviado');
+    }
+  });
+};
 
 // @Ruta GET api/auth
 // @Descripción Obtener el usuario(en general) a travez del token
