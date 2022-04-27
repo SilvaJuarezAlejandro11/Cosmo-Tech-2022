@@ -18,6 +18,8 @@ import setAuthToken from '../utils/setAuthToken';
 
 // Activar cuenta
 export const confirmAccount = (id) => async (dispatch) => {
+  localStorage.setItem('token', id);
+  setAuthToken(localStorage.token);
   dispatch(loadUser());
   try {
     const res = await axios.get(`/api/users/verification/${id}`);

@@ -25,6 +25,8 @@ import CreateProject from './components/project-forms/CreateProject';
 import EditProject from './components/project-forms/EditProject';
 import Project from './components/project/Project';
 import Verification from './components/auth/Verification';
+import VerificationProcess from './components/auth/VerificationProcess';
+
 //? Redux
 
 import { Provider } from 'react-redux';
@@ -67,7 +69,7 @@ function App() {
             <Route
               exact
               path='/verification/account/:id'
-              component={Verification}
+              component={VerificationProcess}
             />
             <PrivateRoute exact path='/menu' component={Projects} />
             <PrivateRoute exact path='/me/projects' component={MyProjects} />
