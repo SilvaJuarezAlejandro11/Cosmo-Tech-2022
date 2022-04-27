@@ -170,7 +170,7 @@ const RegisterStudent = ({
 
 RegisterStudent.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  registerStudent: PropTypes.array.isRequired,
+  registerStudent: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 

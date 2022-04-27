@@ -16,8 +16,8 @@ const mail = (email, id) => {
     port: 465,
     secure: true,
     auth: {
-      user: 'batiz.lab.spankybot@gmail.com',
-      pass: 'Elgato66',
+      user: config.get('AUTH_MAIL'),
+      pass: config.get('AUTH_PASS'),
     },
   });
 
