@@ -28,7 +28,7 @@ const mail = (email, id) => {
     to: email,
     subject: 'Verifica tu cuenta',
     html: `
-    <h2>Da click <a href='http://localhost:3000/verification/account/${id}'> <<< Aquí >>> </a> para activar tu cuenta</h2>`,
+    <h2>Da click <a href='https://cosmotech-6iv8-2022.herokuapp.com/verification/account/${id}'> <<< Aquí >>> </a> para activar tu cuenta</h2>`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
