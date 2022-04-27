@@ -18,8 +18,8 @@ const mail = (email, id) => {
     port: 465,
     secure: true,
     auth: {
-      user: 'batiz.lab.spankybot@gmail.com',
-      pass: 'Elgato66',
+      user: process.env.AUTH_EMAIL || 'batiz.lab.spankybot@gmail.com',
+      pass: process.env.AUTH_PASS || 'Elgato66',
     },
   });
 
