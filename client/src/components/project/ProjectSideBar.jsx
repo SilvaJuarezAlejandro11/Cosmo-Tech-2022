@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom';
 import ProjectProgress from './ProjectProgress';
 
 const ProjectSideBar = ({ project }) => {
+  console.log(Object.keys(project).length);
+
   return (
     <Fragment>
-      <aside class='side-bar'>
-        <div class='opciones-proyecto text-center'>
-          <Link to={'/menu'} class='btn'>
+      <aside className='side-bar'>
+        <div className='opciones-proyecto text-center'>
+          <Link to={'/menu'} className='btn'>
             Regresar
           </Link>
-          <a href={project.file} class='btn'>
+          <a href={project.file} className='btn'>
             Descargar
           </a>
         </div>
-        <div class='indice-proyecto'>
-          <div class='grafica text-center'>
+        <div className='indice-proyecto'>
+          <div className='grafica text-center'>
             <ProjectProgress project={project} />
           </div>
-          <div class='vinculos-proyecto'>
+          <div className='vinculos-proyecto'>
             <h3 className='text-center'>Información que no se ha hecho:</h3>
             {!project.group && <a href='#1'>Grupo</a>}
             {!project.school && <a href='#1'>Escuela</a>}
@@ -64,7 +66,10 @@ const ProjectSideBar = ({ project }) => {
             {(project.images.length === 0 || !project.images) && (
               <a href='#1'>Imagenes del proyecto</a>
             )}
-            {Object.keys(project).length === 39 ? (
+            {(project.refSelfData.length === 0 || !project.refSelfData) && (
+              <a href='#1'>Grafica de gantt</a>
+            )}
+            {Object.keys(project).length === 41 ? (
               ''
             ) : (
               <Fragment>
@@ -123,6 +128,11 @@ const ProjectSideBar = ({ project }) => {
                 )}
                 {project.images.length > 0 && (
                   <a href='#1'>Imagenes del proyecto</a>
+                )}
+                {(project.refSelfData.length !== 0 ||
+                  project.refSelfData ||
+                  project.refSelfData.length > 0) && (
+                  <a href='#1'>Grafica de gantt</a>
                 )}
               </Fragment>
             )}

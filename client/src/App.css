@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com');
 @import url('https://fonts.gstatic.com');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;700&display=swap');
+@import url('https://cdn.syncfusion.com/ej2/material.css');
 
 :root {
   --blanco: #ffffff;
@@ -532,6 +533,23 @@ img {
   width: 18rem;
 }
 
+.grupo input[type='checkbox'] {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto;
+  padding: 0;
+  margin: 0.5rem auto;
+}
+
+.grupo .aviso {
+  display: flex;
+  flex-direction: column;
+}
+
+.aviso small {
+  color: red;
+}
+
 .grupo select {
   padding: 1rem;
 }
@@ -772,12 +790,6 @@ input[type='date'] {
   }
 }
 
-@media (min-width: 1600px) {
-  .proyectos {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .proyecto::before {
   content: '';
   position: absolute;
@@ -832,7 +844,7 @@ h5 {
   gap: calc(var(--separacion) / 4);
 }
 
-.mas-sobre a {
+.mas-sobre .degradado {
   font-size: 2rem;
   color: var(--azulClaro);
   position: relative;
@@ -841,7 +853,7 @@ h5 {
   transition-duration: 0.3s;
 }
 
-.mas-sobre a:hover {
+.mas-sobre .degradado:hover {
   color: transparent;
   background: linear-gradient(
     to right,
@@ -854,6 +866,7 @@ h5 {
 }
 
 .descargar.degradado {
+  padding: 0;
   font-size: 4rem;
 }
 
@@ -894,10 +907,55 @@ h5 {
   display: flex;
   position: relative;
   justify-content: space-between;
+  align-items: center;
+  margin: 0;
 }
 
+.proyecto-opciones:last-of-type {
+  justify-content: space-evenly;
+  max-height: 5rem;
+  margin-bottom: 2rem;
+}
+
+.proyecto-opciones a {
+  padding: 0;
+}
 .proyecto-opciones i {
   font-size: 4rem;
+}
+
+.subir-archivo {
+  color: var(--blanco);
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  transition-property: color, transform;
+  transition-duration: 0.3s;
+}
+
+.subir-archivo a:hover {
+  color: var(--grisClaro);
+  transform: scale(1.1);
+}
+
+.gantt {
+  border: none;
+  background-color: transparent;
+  color: var(--blanco);
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  height: 4rem;
+  min-width: 0;
+  min-height: 0;
+  transition-property: color, transform;
+  transition-duration: 0.3s;
+}
+
+.gantt:hover {
+  color: rgb(182, 182, 10);
+  transform: scale(1.1);
 }
 
 /** Crear Proyectos **/
@@ -1380,6 +1438,9 @@ th:first-child {
   .detalles-proyecto-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+  .detalles-proyecto-grid section:last-child {
+    grid-column: 1/3;
+  }
 }
 
 .detalles-proyecto {
@@ -1602,6 +1663,12 @@ th:first-child {
 .regresar h3:hover {
   color: var(--azulOscuro);
   cursor: pointer;
+}
+
+/** Gantt **/
+
+.gantt {
+  margin: 5rem 0;
 }
 
 /** Footer **/

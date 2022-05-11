@@ -180,11 +180,11 @@ const MyProjects = ({
               <h4>No hay proyectos ...</h4>
             )}
           </section>
-          <section class='contenedor mi-proyecto'>
+          <section className='contenedor mi-proyecto'>
             <Link to='/create-project'>
-              <div class='proyecto text-center'>
+              <div className='proyecto text-center'>
                 <h1>Crear Proyecto</h1>
-                <i class='fas fa-plus-circle'></i>
+                <i className='fas fa-plus-circle'></i>
               </div>
             </Link>
           </section>
@@ -196,8 +196,6 @@ const MyProjects = ({
 };
 
 MyProject.propTypes = {
-  auth: PropTypes.object.isRequired,
-  getCurrentProjects: PropTypes.func.isRequired,
   project: PropTypes.object.isRequired,
 };
 

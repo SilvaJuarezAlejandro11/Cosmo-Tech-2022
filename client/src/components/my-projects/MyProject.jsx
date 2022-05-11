@@ -50,9 +50,14 @@ const MyProject = ({
           <Link className='degradado' to={`/project/${_id}`}>
             Ver más sobre este proyecto
           </Link>
-          <a className='degradado descargar' href={file}>
-            Descargar
-          </a>
+          <div className='proyecto-opciones'>
+            <Link to={`/gantt/${_id}`} className='subir-archivo'>
+              <i className='fas fa-calendar-alt'></i>
+            </Link>
+            <a className='degradado descargar' href={file}>
+              Descargar
+            </a>
+          </div>
         </div>
       </div>
     </>

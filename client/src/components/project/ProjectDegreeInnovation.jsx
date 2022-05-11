@@ -9,8 +9,8 @@ const ProjectDegreeInnovation = ({
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Innovación del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Innovación del proyecto</h1>
             <p>Grado de innovación y innovación del proyecto.</p>
           </div>
         </section>

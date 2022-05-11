@@ -301,15 +301,18 @@ router.post(
         errors: errors.array(),
       });
     }
-
+    console.log(req.body);
     console.log(req.files['file']);
-    if (typeof req.files['file'] === 'undefined') {
+    if (req.body.file === '' && typeof req.files['file'] === 'undefined') {
       return res.status(400).json({
         errors: [{ msg: 'Ingrese su proyecto en forma de archivo.' }],
       });
     }
     const allowedExtFile = /(\.rar|\.zip)$/i;
-    if (!allowedExtFile.exec(req.files['file'][0].originalname)) {
+    if (
+      req.body.file === '' &&
+      !allowedExtFile.exec(req.files['file'][0].originalname)
+    ) {
       return res.status(400).json({
         errors: [
           {
@@ -352,6 +355,7 @@ router.post(
         authors,
         period,
         semester,
+        file,
         requirements,
         steps,
         group,
@@ -537,10 +541,15 @@ router.post(
     } else {
       projectFields.bibliography = [];
     }
-    if (files) {
-      const projectFile = req.files['file'][0];
-      projectFields.file = projectFile.url;
+    if (file) {
+      projectFields.file = file;
+    } else {
+      if (files) {
+        const projectFile = req.files['file'][0];
+        projectFields.file = projectFile.url;
+      }
     }
+
     if (req.files['images']) {
       projectFields.images = req.files['images'].map((image) => image.url);
     } else {
@@ -589,6 +598,88 @@ router.get('/:pro_id', auth, async (req, res) => {
     }
 
     res.status(500).send('Error en el servidor.');
+  }
+});
+
+//* @desc Crear Tareas o Sub tareas
+//* @route UPDATE api/projects
+//* @access Private
+
+router.put(
+  '/gantt/:pro_id',
+  [
+    auth,
+    [
+      check('TaskID', 'El id debe ser con numeros')
+        .not()
+        .isEmpty()
+        .matches(/^[0-9]+$/),
+      check('TaskName', 'Se requiere nombre').not().isEmpty(),
+      check('StartDate', 'Se requiere fecha de inicio').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      TaskID,
+      TaskName,
+      StartDate,
+      EndDate,
+      Duration,
+      Progress,
+      ParentId,
+    } = req.body;
+
+    const newTask = {
+      TaskID: parseInt(TaskID),
+      TaskName,
+      StartDate: new Date(StartDate),
+      EndDate: EndDate ? new Date(EndDate) : null,
+      Duration: Duration ? parseInt(Duration) : null,
+      Progress: Progress ? parseInt(Progress) : null,
+      ParentId: ParentId ? parseInt(ParentId) : null,
+    };
+
+    console.log(newTask);
+
+    try {
+      const project = await Project.findOne({ _id: req.params.pro_id });
+
+      project.refSelfData.unshift(newTask);
+
+      await project.save();
+
+      res.json(project);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+//* @desc Borrar Tareas o subtareas
+//* @route Delete api/projects
+//* @access Private
+
+router.delete('/gantt/:pro_id/:task_id', auth, async (req, res) => {
+  try {
+    const project = await Project.findOne({ _id: req.params.pro_id });
+    // Get remove index
+
+    project.refSelfData = project.refSelfData.filter(
+      (task) => task._id.toString() !== req.params.task_id
+    );
+
+    await project.save();
+    res.json(project);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json('Server Error');
   }
 });
 

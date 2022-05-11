@@ -107,85 +107,6 @@ const ProjectSchema = mongoose.Schema({
   bibliography: {
     type: [String],
   },
-  activity: [
-    {
-      title: {
-        type: String,
-      },
-      jan: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      feb: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      marh: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      april: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      may: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      jun: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      jul: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      ago: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      sep: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      oct: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      nov: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-      dec: {
-        week1: { type: Boolean },
-        week2: { type: Boolean },
-        week3: { type: Boolean },
-        week4: { type: Boolean },
-      },
-    },
-  ],
   file: {
     type: String,
     required: true,
@@ -193,6 +114,31 @@ const ProjectSchema = mongoose.Schema({
   images: {
     type: [String],
   },
+  refSelfData: [
+    {
+      TaskID: {
+        type: Number,
+      },
+      TaskName: {
+        type: String,
+      },
+      StartDate: {
+        type: Date,
+      },
+      EndDate: {
+        type: Date,
+      },
+      Duration: {
+        type: Number,
+      },
+      Progress: {
+        type: Number,
+      },
+      ParentId: {
+        type: Number,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

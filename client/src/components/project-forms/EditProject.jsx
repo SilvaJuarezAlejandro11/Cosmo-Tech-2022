@@ -14,102 +14,97 @@ const EditProject = ({
   const newProjectId = Object.assign([], project);
 
   const projectId = newProjectId.find((pro) => pro._id === match.params.id);
-  console.log(project);
 
   useEffect(() => {
-    if (typeof projectId !== 'undefined') {
-      getCurrentProjects();
+    getCurrentProjects();
 
-      setFormData({
-        title: loading || !projectId.title ? '' : projectId.title,
+    setFormData({
+      title: loading || !projectId.title ? '' : projectId.title,
 
-        languajes:
-          loading || !projectId.languajes ? '' : projectId.languajes.join(','),
+      languajes:
+        loading || !projectId.languajes ? '' : projectId.languajes.join(','),
 
-        authors:
-          loading || !projectId.authors ? '' : projectId.authors.join(','),
+      authors: loading || !projectId.authors ? '' : projectId.authors.join(','),
 
-        period: loading || !projectId.period ? '' : projectId.period,
+      period: loading || !projectId.period ? '' : projectId.period,
 
-        semester: loading || !projectId.semester ? '' : projectId.semester,
+      semester: loading || !projectId.semester ? '' : projectId.semester,
+      file: loading || !projectId.file ? '' : projectId.file,
 
-        requirements:
-          loading || !projectId.requirements
-            ? ''
-            : projectId.requirements.join(','),
-        steps: loading || !projectId.steps ? '' : projectId.steps.join(','),
-        group: loading || !projectId.group ? '' : projectId.group,
-        school: loading || !projectId.school ? '' : projectId.school,
-        career: loading || !projectId.career ? '' : projectId.career,
-        topic: loading || !projectId.topic ? '' : projectId.topic,
-        delimitation:
-          loading || !projectId.delimitation ? '' : projectId.delimitation,
-        summary: loading || !projectId.summary ? '' : projectId.summary,
-        introduction:
-          loading || !projectId.introduction ? '' : projectId.introduction,
-        objetiveGeneral:
-          loading || !projectId.objetiveGeneral
-            ? ''
-            : projectId.objetiveGeneral.join(','),
-        objetiveParticular:
-          loading || !projectId.objetiveParticular
-            ? ''
-            : projectId.objetiveParticular.join(','),
-        justification:
-          loading || !projectId.justification ? '' : projectId.justification,
-        theoretical:
-          loading || !projectId.theoretical ? '' : projectId.theoretical,
-        feasibilityFinancial:
-          loading || !projectId.feasibilityFinancial
-            ? ''
-            : projectId.feasibilityFinancial,
-        feasibilityTechnique:
-          loading || !projectId.feasibilityTechnique
-            ? ''
-            : projectId.feasibilityTechnique,
-        impactTechnology:
-          loading || !projectId.impactTechnology
-            ? ''
-            : projectId.impactTechnology,
-        impactSocial:
-          loading || !projectId.impactSocial ? '' : projectId.impactSocial,
-        impactSustainable:
-          loading || !projectId.impactSustainable
-            ? ''
-            : projectId.impactSustainable,
-        degreeInnovation:
-          loading || !projectId.degreeInnovation
-            ? ''
-            : projectId.degreeInnovation,
-        results:
-          loading || !projectId.results ? '' : projectId.results.join(','),
-        innovation:
-          loading || !projectId.innovation ? '' : projectId.innovation,
-        sustainability:
-          loading || !projectId.sustainability ? '' : projectId.sustainability,
-        functionality:
-          loading || !projectId.functionality ? '' : projectId.functionality,
-        feasibility:
-          loading || !projectId.feasibility ? '' : projectId.feasibility,
-        conclusion:
-          loading || !projectId.conclusion ? '' : projectId.conclusion,
-        bibliography:
-          loading || !projectId.bibliography
-            ? ''
-            : projectId.bibliography.join(','),
-      });
-    }
-
+      requirements:
+        loading || !projectId.requirements
+          ? ''
+          : projectId.requirements.join(','),
+      steps: loading || !projectId.steps ? '' : projectId.steps.join(','),
+      group: loading || !projectId.group ? '' : projectId.group,
+      school: loading || !projectId.school ? '' : projectId.school,
+      career: loading || !projectId.career ? '' : projectId.career,
+      topic: loading || !projectId.topic ? '' : projectId.topic,
+      delimitation:
+        loading || !projectId.delimitation ? '' : projectId.delimitation,
+      summary: loading || !projectId.summary ? '' : projectId.summary,
+      introduction:
+        loading || !projectId.introduction ? '' : projectId.introduction,
+      objetiveGeneral:
+        loading || !projectId.objetiveGeneral
+          ? ''
+          : projectId.objetiveGeneral.join(','),
+      objetiveParticular:
+        loading || !projectId.objetiveParticular
+          ? ''
+          : projectId.objetiveParticular.join(','),
+      justification:
+        loading || !projectId.justification ? '' : projectId.justification,
+      theoretical:
+        loading || !projectId.theoretical ? '' : projectId.theoretical,
+      feasibilityFinancial:
+        loading || !projectId.feasibilityFinancial
+          ? ''
+          : projectId.feasibilityFinancial,
+      feasibilityTechnique:
+        loading || !projectId.feasibilityTechnique
+          ? ''
+          : projectId.feasibilityTechnique,
+      impactTechnology:
+        loading || !projectId.impactTechnology
+          ? ''
+          : projectId.impactTechnology,
+      impactSocial:
+        loading || !projectId.impactSocial ? '' : projectId.impactSocial,
+      impactSustainable:
+        loading || !projectId.impactSustainable
+          ? ''
+          : projectId.impactSustainable,
+      degreeInnovation:
+        loading || !projectId.degreeInnovation
+          ? ''
+          : projectId.degreeInnovation,
+      results: loading || !projectId.results ? '' : projectId.results.join(','),
+      innovation: loading || !projectId.innovation ? '' : projectId.innovation,
+      sustainability:
+        loading || !projectId.sustainability ? '' : projectId.sustainability,
+      functionality:
+        loading || !projectId.functionality ? '' : projectId.functionality,
+      feasibility:
+        loading || !projectId.feasibility ? '' : projectId.feasibility,
+      conclusion: loading || !projectId.conclusion ? '' : projectId.conclusion,
+      bibliography:
+        loading || !projectId.bibliography
+          ? ''
+          : projectId.bibliography.join(','),
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getCurrentProjects, match.params.id, loading]);
+  }, [loading]);
 
   const [displayInputs, toggleInputs] = useState(false);
+  const [toDateDisabled, toggleDisabled] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     languajes: '',
     authors: '',
     period: '',
     semester: '',
+    file: '',
     requirements: '',
     steps: '',
     group: '',
@@ -138,7 +133,7 @@ const EditProject = ({
     bibliography: '',
   });
 
-  const [file, setFile] = useState();
+  const [file2, setFile] = useState();
   const [images, setImages] = useState();
 
   const [isSubmitted, setIsSubmitted] = useState(true);
@@ -149,6 +144,7 @@ const EditProject = ({
     authors,
     period,
     semester,
+    file,
     requirements,
     steps,
     group,
@@ -195,6 +191,9 @@ const EditProject = ({
     data.append('authors', authors);
     data.append('period', period);
     data.append('semester', semester);
+    if (file) {
+      data.append('file', file);
+    }
     data.append('requirements', requirements);
     data.append('steps', steps);
     data.append('group', group);
@@ -221,16 +220,14 @@ const EditProject = ({
     data.append('feasibility', feasibility);
     data.append('conclusion', conclusion);
     data.append('bibliography', bibliography);
-
-    data.append('file', file);
+    if (file2) {
+      data.append('file', file2);
+    }
     if (images) data.append('images', Object.values(images)[0]);
     if (images) data.append('images', Object.values(images)[1]);
     if (images) data.append('images', Object.values(images)[2]);
     if (images) data.append('images', Object.values(images)[3]);
     if (images) data.append('images', Object.values(images)[4]);
-
-    console.log(file);
-    console.log(images);
 
     updateProject(data, projectId._id);
   };
@@ -245,11 +242,8 @@ const EditProject = ({
         >
           <section className='formulario-grid-01'>
             <div className='info text-center'>
-              <h1>Crea tu proyecto</h1>
-              <h3>Obligatorio *</h3>
-              <p>
-                Necesitamos cierta información para poder crear tu proyecto.
-              </p>
+              <h1>Edita tu proyecto</h1>
+              <p>Actualiza el proyecto actualizandolo aqui</p>
             </div>
             <Alert />
             <div className='grupo'>
@@ -298,7 +292,7 @@ const EditProject = ({
               <select
                 id='period'
                 name='period'
-                defaultValue={period}
+                value={period}
                 onChange={(e) => onChange(e)}
                 required
               >
@@ -317,12 +311,12 @@ const EditProject = ({
               <select
                 id='semester'
                 name='semester'
-                defaultValue={semester}
+                value={semester}
                 onChange={(e) => onChange(e)}
                 required
               >
                 <option value='' disabled hidden>
-                  Seleccione el semestre.
+                  Seleccione el periodo.
                 </option>
                 <option value='1°'>1°</option>
                 <option value='2°'>2°</option>
@@ -332,20 +326,53 @@ const EditProject = ({
                 <option value='6°'>6°</option>
               </select>
             </div>
-            <div className='grupo archivo-campo'>
-              <label htmlFor='formFile'>Ingrese su proyecto: (zip o rar)</label>
-              <div className={`archivo ${!file ? 'carpeta' : 'enviado'}`}>
-                <input
-                  type='file'
-                  id='formFile'
-                  name='file'
-                  onChange={(e) => {
-                    setIsSubmitted(false);
-                    const file = e.target.files[0];
-                    setFile(file);
-                  }}
-                />
+            {!toDateDisabled && (
+              <div className='grupo'>
+                <label htmlFor='file'>URL del archivo:</label>
+                {projectId && (
+                  <a href={projectId.file || file} id='file'>
+                    {projectId.file || file}
+                  </a>
+                )}
               </div>
+            )}
+            {toDateDisabled && (
+              <div className='grupo archivo-campo'>
+                <label htmlFor='formFile'>
+                  Ingrese su proyecto: (zip o rar)
+                </label>
+                <div className={`archivo ${!file2 ? 'carpeta' : 'enviado'}`}>
+                  <input
+                    type='file'
+                    id='formFile'
+                    name='file'
+                    onChange={(e) => {
+                      setIsSubmitted(false);
+                      const file = e.target.files[0];
+                      setFile(file);
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+            <div className='grupo'>
+              <div className='aviso'>
+                <label htmlFor='check'>¿Cambiar archivo?</label>
+                <small>
+                  Si desea actualizar con el archivo da click en la caja.
+                </small>
+              </div>
+              <input
+                id='check'
+                type='checkbox'
+                onChange={() => {
+                  toggleDisabled(!toDateDisabled);
+                  setFormData({
+                    ...formData,
+                    file: false,
+                  });
+                }}
+              />
             </div>
           </section>
 
@@ -733,7 +760,7 @@ const EditProject = ({
               <input
                 type='submit'
                 className='btn '
-                disabled={isSubmitted && 'true'}
+                disabled={isSubmitted && true}
                 value='Editar'
               />
               <Link className='btn' to='/me/projects'>

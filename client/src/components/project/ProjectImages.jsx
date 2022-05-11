@@ -7,8 +7,8 @@ const ProjectImages = ({ project: { images } }) => {
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Imagenes del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Imagenes del proyecto</h1>
             <p>Imagenes sobre el proyecto.</p>
           </div>
         </section>

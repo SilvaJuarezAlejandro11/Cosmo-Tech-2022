@@ -27,6 +27,9 @@ import Project from './components/project/Project';
 import Verification from './components/auth/Verification';
 import VerificationProcess from './components/auth/VerificationProcess';
 
+//? Prueba
+import GanttComponente from './components/pruebas/GanttComponente';
+
 //? Redux
 
 import { Provider } from 'react-redux';
@@ -92,6 +95,12 @@ function App() {
             />
             <Route exact path='/edit-project/:id' component={EditProject} />
             <Route exact path='/project/:id' component={Project} />
+
+            {
+              /* Rutas para pruebas */
+
+              <Route exact path='/gantt' component={GanttComponente} />
+            }
           </Switch>
           <Footer />
         </Fragment>

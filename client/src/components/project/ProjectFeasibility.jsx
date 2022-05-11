@@ -9,8 +9,8 @@ const ProjectFeasibility = ({
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Grado de factibilidad</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Grado de factibilidad</h1>
             <p>Factibilidad técnica y financiera del proyecto.</p>
           </div>
         </section>

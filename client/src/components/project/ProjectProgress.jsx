@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 const ProjectProgress = ({ project }) => {
   console.log(Object.keys(project).length);
   const porcentaje = () => {
-    let progreso = (Object.keys(project).length * 100) / 39;
+    let progreso = (Object.keys(project).length * 100) / 41;
     return progreso.toFixed(2);
   };
 

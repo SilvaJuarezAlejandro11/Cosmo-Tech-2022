@@ -7,8 +7,8 @@ const ProjectConclusion = ({ project: { conclusion, bibliography } }) => {
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Conclusión del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Conclusión del proyecto</h1>
             <p>Conclusión y bibliografías del proyecto.</p>
           </div>
         </section>

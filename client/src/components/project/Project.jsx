@@ -19,6 +19,7 @@ import ProjectImages from './ProjectImages';
 import ProjectTopDetails from './ProjectTopDetails';
 import { Link } from 'react-router-dom';
 import ProjectSideBar from './ProjectSideBar';
+import ProjectGantt from './ProjectGantt';
 const Project = ({
   project: { project, loading },
   auth,
@@ -38,7 +39,7 @@ const Project = ({
             : project.authors.map((author, index) => (
                 <Fragment key={index}>
                   <h3 className='nombre'>
-                    <i class='fas fa-user'></i> {author}
+                    <i className='fas fa-user'></i> {author}
                   </h3>
                 </Fragment>
               ))}
@@ -50,11 +51,11 @@ const Project = ({
         <Fragment>
           <main className='detalles-proyecto-grid'>
             <section className='contenedor detalles-proyecto'>
-              <div class='side-bar-opciones-768 text-center'>
-                <Link to={'/menu'} class='btn'>
+              <div className='side-bar-opciones-768 text-center'>
+                <Link to={'/menu'} className='btn'>
                   Regresar
                 </Link>
-                <a href={project.file} class='btn'>
+                <a href={project.file} className='btn'>
                   Descargar
                 </a>
               </div>
@@ -96,8 +97,12 @@ const Project = ({
                 <ProjectConclusion project={project} />
               )}
               {project.images.length > 0 && <ProjectImages project={project} />}
-            </section>
 
+              {(project.refSelfData.length !== 0 ||
+                project.refSelfData.length > 0) && (
+                <ProjectGantt project={project} />
+              )}
+            </section>
             <ProjectSideBar project={project} />
           </main>
         </Fragment>

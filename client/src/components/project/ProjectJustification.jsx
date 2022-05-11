@@ -7,8 +7,8 @@ const ProjectJustification = ({ project: { justification, theoretical } }) => {
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Razones del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Razones del proyecto</h1>
             <p>Justificación y el sustento teórico del proyecto.</p>
           </div>
         </section>

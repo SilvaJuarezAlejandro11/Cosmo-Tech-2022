@@ -9,8 +9,8 @@ const ProjectImpact = ({
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Impacto del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Impacto del proyecto</h1>
             <p>
               Impacto técnologico, social y sustentable que realiza el proyecto.
             </p>

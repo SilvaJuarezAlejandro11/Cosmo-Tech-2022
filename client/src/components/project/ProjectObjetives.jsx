@@ -9,8 +9,8 @@ const ProjectObjetives = ({
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Objetivos</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Objetivos</h1>
             <p>Objetivos generales y particulares del proyecto</p>
           </div>
         </section>
@@ -32,7 +32,7 @@ const ProjectObjetives = ({
                   objetiveGeneral.map((general, index) => (
                     <Fragment key={index}>
                       <p>
-                        <i class='list fa fa-circle'></i> {general}
+                        <i className='list fa fa-circle'></i> {general}
                       </p>
                     </Fragment>
                   ))
@@ -46,7 +46,7 @@ const ProjectObjetives = ({
                   objetiveParticular.map((particular, index) => (
                     <Fragment key={index}>
                       <p>
-                        <i class='list fa fa-circle'></i> {particular}
+                        <i className='list fa fa-circle'></i> {particular}
                       </p>
                     </Fragment>
                   ))

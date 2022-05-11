@@ -9,8 +9,8 @@ const ProjectCharacteristics = ({
     <Fragment>
       {!toggle && (
         <section onClick={() => setToggle(true)} className='detalle-proyecto'>
-          <div class='descripcion-detalle text-center'>
-            <h1 class='degradado'>Caracteristicas del proyecto</h1>
+          <div className='descripcion-detalle text-center'>
+            <h1 className='degradado'>Caracteristicas del proyecto</h1>
             <p>Funcionalidad, sustentabilidad y factibilidad del proyecto.</p>
           </div>
         </section>
