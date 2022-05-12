@@ -924,7 +924,7 @@ h5 {
   font-size: 4rem;
 }
 
-.subir-archivo {
+.gantt-icon {
   color: var(--blanco);
   padding: 0;
   margin: 0;
@@ -934,27 +934,8 @@ h5 {
   transition-duration: 0.3s;
 }
 
-.subir-archivo a:hover {
+.gantt-icon a:hover {
   color: var(--grisClaro);
-  transform: scale(1.1);
-}
-
-.gantt {
-  border: none;
-  background-color: transparent;
-  color: var(--blanco);
-  padding: 0;
-  margin: 0;
-  width: 3rem;
-  height: 4rem;
-  min-width: 0;
-  min-height: 0;
-  transition-property: color, transform;
-  transition-duration: 0.3s;
-}
-
-.gantt:hover {
-  color: rgb(182, 182, 10);
   transform: scale(1.1);
 }
 
@@ -1438,7 +1419,7 @@ th:first-child {
   .detalles-proyecto-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  .detalles-proyecto-grid section:last-child {
+  .detalles-proyecto-grid section.gantt-detalle:last-child {
     grid-column: 1/3;
   }
 }

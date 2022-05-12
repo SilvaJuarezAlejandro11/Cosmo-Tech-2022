@@ -134,6 +134,44 @@ export const updateProject = (data, proId) => async (dispatch) => {
   }
 };
 
+//? Agregar gantt y sus tareas
+
+export const addGantt = (formData, proId) => async (dispatch) => {
+  console.log(proId);
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.put(
+      `/api/projects/gantt/${proId}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: GET_PROJECT,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Tarea Agregada!', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: CREATE_FAIL,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
+  }
+};
+
 //? Delete account & profile
 
 export const deleteProject = (id) => async (dispatch) => {

@@ -51,7 +51,7 @@ const MyProject = ({
             Ver más sobre este proyecto
           </Link>
           <div className='proyecto-opciones'>
-            <Link to={`/gantt/${_id}`} className='subir-archivo'>
+            <Link to={`/gantt/${_id}`} className='gantt-icon'>
               <i className='fas fa-calendar-alt'></i>
             </Link>
             <a className='degradado descargar' href={file}>

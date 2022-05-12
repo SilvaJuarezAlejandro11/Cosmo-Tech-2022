@@ -23,12 +23,10 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import CreateProject from './components/project-forms/CreateProject';
 import EditProject from './components/project-forms/EditProject';
+import AddGantt from './components/project-forms/AddGantt';
 import Project from './components/project/Project';
 import Verification from './components/auth/Verification';
 import VerificationProcess from './components/auth/VerificationProcess';
-
-//? Prueba
-import GanttComponente from './components/pruebas/GanttComponente';
 
 //? Redux
 
@@ -95,12 +93,7 @@ function App() {
             />
             <Route exact path='/edit-project/:id' component={EditProject} />
             <Route exact path='/project/:id' component={Project} />
-
-            {
-              /* Rutas para pruebas */
-
-              <Route exact path='/gantt' component={GanttComponente} />
-            }
+            <Route exact path='/gantt/:id' component={AddGantt} />
           </Switch>
           <Footer />
         </Fragment>

@@ -639,10 +639,10 @@ router.put(
       TaskID: parseInt(TaskID),
       TaskName,
       StartDate: new Date(StartDate),
-      EndDate: EndDate ? new Date(EndDate) : null,
-      Duration: Duration ? parseInt(Duration) : null,
-      Progress: Progress ? parseInt(Progress) : null,
-      ParentId: ParentId ? parseInt(ParentId) : null,
+      EndDate: EndDate ? new Date(EndDate) : '',
+      Duration: Duration ? parseInt(Duration) : '',
+      Progress: Progress ? parseInt(Progress) : '',
+      ParentId: ParentId ? parseInt(ParentId) : '',
     };
 
     console.log(newTask);

@@ -73,11 +73,8 @@ const GanttFormulario = ({ task, setTask, subTask, setSubTask }) => {
   };
 
   return (
-    <section className='contenedor my-5'>
-      <form
-        onSubmit={(e) => onSubmit(e)}
-        className='formulario text-center p-5'
-      >
+    <section className='contenedor'>
+      <form onSubmit={(e) => onSubmit(e)} className='formulario text-center'>
         {toggle && (
           <input
             type='button'

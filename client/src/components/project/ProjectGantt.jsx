@@ -22,7 +22,7 @@ const ProjectGantt = ({ project: { refSelfData } }) => {
   console.log(refSelfData);
 
   return (
-    <section className='gantt'>
+    <section className='gantt-detalle'>
       <div className='text-center'>
         <h1>Grafica de Gantt</h1>
       </div>
