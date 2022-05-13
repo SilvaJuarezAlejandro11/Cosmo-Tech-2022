@@ -10,9 +10,12 @@ import {
 } from '@syncfusion/ej2-react-gantt';
 import { PdfColor} from '@syncfusion/ej2-pdf-export';
 
+interface Props {
+  refSelfData: {}[];
+}
 
   
-const Gantt = ({refSelfData})  => {
+const Gantt = ({refSelfData}: Props)  => {
    let ganttInst: GanttComponent | null;
 
    const taskValues: TaskFieldsModel = {
