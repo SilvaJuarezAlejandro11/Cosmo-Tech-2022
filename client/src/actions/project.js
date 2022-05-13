@@ -155,7 +155,7 @@ export const addGantt = (formData, proId) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert('Tarea Agregada!', 'success'));
+    dispatch(setAlert('Tarea/Subtarea Agregada!', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -169,13 +169,45 @@ export const addGantt = (formData, proId) => async (dispatch) => {
         status: err.response.status,
       },
     });
+    dispatch(getProjectById(proId));
   }
 };
 
-//? Delete account & profile
+//? Borrar Tarea o Subtarea
+
+export const deleteTask = (projectId, taskId) => async (dispatch) => {
+  if (
+    window.confirm(
+      '¿Estas seguro de borrar la tarea? Si la tarea tiene subtareas; tendrás que crear otra tarea con la misma ID para poder verlas de nuevo'
+    )
+  ) {
+    try {
+      const res = await axios.delete(
+        `/api/projects/gantt/${projectId}/${taskId}`
+      );
+      dispatch({
+        type: GET_PROJECT,
+        payload: res.data,
+      });
+      dispatch(setAlert('Tarea/Subtarea borrada!', 'success'));
+    } catch (err) {
+      dispatch({
+        type: CREATE_FAIL,
+        payload: {
+          msg: err.response.statusText,
+          status: err.response.status,
+        },
+      });
+    }
+  }
+};
+
+//? Borrar proyecto
 
 export const deleteProject = (id) => async (dispatch) => {
-  if (window.confirm('Are you sure? This can NOT be undome!')) {
+  if (
+    window.confirm('¿Estas seguro de borrar el proyecto? No habrá vuelta atrás')
+  ) {
     try {
       const res = await axios.delete(`/api/projects/${id}`);
 

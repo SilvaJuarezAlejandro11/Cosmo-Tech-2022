@@ -9,9 +9,11 @@ import {
   ExcelExport
 } from '@syncfusion/ej2-react-gantt';
 import { PdfColor} from '@syncfusion/ej2-pdf-export';
-import {projectData} from '../pruebas/data'
 
- let ganttInst: GanttComponent | null;
+
+  
+const Gantt = ({refSelfData})  => {
+   let ganttInst: GanttComponent | null;
 
    const taskValues: TaskFieldsModel = {
     id: 'TaskID',
@@ -20,11 +22,14 @@ import {projectData} from '../pruebas/data'
     endDate: 'EndDate',
     duration: 'Duration',
     progress: 'Progress',
-    child: 'subtasks',
-    dependency: 'Predeceesor',
+    parentID:'ParentId'
+    // child: 'subtasks',
+    // dependency: 'Predeceesor',
   };
 
   const toolbarBtnClick=(args: any) =>{
+      console.log(args.item.id);
+ 
     if(args.item.id.includes("pdfexport")){
       (ganttInst as GanttComponent).pdfExport({
         fileName:"projectData.pdf",
@@ -73,30 +78,29 @@ import {projectData} from '../pruebas/data'
       (ganttInst as GanttComponent).csvExport();
     }
   }
-  
-const Gantt = ({refSelfData}) => {
+
   return (
  
-<section className="contenedor">
-       <div className='text-center'>
-          <h1>Grafica de Gantt del proyecto</h1>
-        </div>
-           <div className="gantt">
-      <GanttComponent ref={gantt => ganttInst = gantt}
-        dataSource={projectData} taskFields={taskValues}
-        toolbar={['ExpandAll', 'CollapseAll',"PdfExport", "ExcelExport", "CsvExport"]}
+<section className='contenedor'>
+  <div className='text-center'>
+    <h1>Grafica de Gantt del proyecto</h1>
+  </div>
+  <div className="gantt">
+    <GanttComponent ref={gantt => ganttInst = gantt}
+        dataSource={refSelfData} taskFields={taskValues}
+        toolbar={['ExpandAll', 'CollapseAll', "ExcelExport", "CsvExport"]}
         allowPdfExport={true}
         allowExcelExport={true}
         toolbarClick={toolbarBtnClick}>
-          <Inject services={[Toolbar, PdfExport, ExcelExport]}></Inject>
-          <ColumnsDirective>
-            <ColumnDirective field="TaskID" headerText="ID" width="200"></ColumnDirective>
-            <ColumnDirective field="TaskName" headerText="Name" width="250"></ColumnDirective>
-            <ColumnDirective field="StartDate" format="dd-MMM-yy" width="200"></ColumnDirective>
-            <ColumnDirective field="Duration" width="200"></ColumnDirective>
-          </ColumnsDirective>
-      </GanttComponent>
-           </div>
+      <Inject services={[Toolbar, PdfExport, ExcelExport]}></Inject>
+      <ColumnsDirective>
+        <ColumnDirective field="TaskID" headerText="ID" ></ColumnDirective>
+        <ColumnDirective field="TaskName" headerText="Nombre" ></ColumnDirective>
+        <ColumnDirective field="StartDate" format="dd-MMM-yy" headerText='Fecha(dd-MMM-aa)' ></ColumnDirective>
+        <ColumnDirective field="Duration" headerText='Duración en días'></ColumnDirective>
+      </ColumnsDirective>
+    </GanttComponent>
+  </div>
 </section>
   )
 }

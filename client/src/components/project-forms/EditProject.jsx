@@ -415,7 +415,7 @@ const EditProject = ({
                     onChange={(e) => onChange(e)}
                   />
                   <span className='text-center'>
-                    Por favor, utilize enter para separar los cada uno de los
+                    Por favor, utilize comas para separar los cada uno de los
                     valores
                   </span>
                 </div>
@@ -431,7 +431,7 @@ const EditProject = ({
                     onChange={(e) => onChange(e)}
                   />
                   <span className='text-center'>
-                    Por favor, utilize enter para separar los cada uno de los
+                    Por favor, utilize comas para separar los cada uno de los
                     valores
                   </span>
                 </div>
@@ -524,7 +524,7 @@ const EditProject = ({
                     onChange={(e) => onChange(e)}
                   />
                   <span className='text-center'>
-                    Por favor, utilize enter para separar los cada uno de los
+                    Por favor, utilize comas para separar los cada uno de los
                     valores
                   </span>
                 </div>
@@ -542,7 +542,7 @@ const EditProject = ({
                     onChange={(e) => onChange(e)}
                   />
                   <span className='text-center'>
-                    Por favor, utilize enter para separar los cada uno de los
+                    Por favor, utilize comas para separar los cada uno de los
                     valores
                   </span>
                 </div>
@@ -652,7 +652,7 @@ const EditProject = ({
                     onChange={(e) => onChange(e)}
                   />
                   <span className='text-center'>
-                    Por favor, utilize enter para separar los cada uno de los
+                    Por favor, utilize comas para separar los cada uno de los
                     valores
                   </span>
                 </div>
@@ -727,6 +727,10 @@ const EditProject = ({
                     value={bibliography}
                     onChange={(e) => onChange(e)}
                   />
+                  <span className='text-center'>
+                    Por favor, utilize comas para separar los cada uno de los
+                    valores
+                  </span>
                 </div>
                 <div className='grupo imagenes'>
                   <label htmlFor='images'>

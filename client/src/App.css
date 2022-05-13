@@ -104,6 +104,16 @@ img {
   position: relative;
 }
 
+.grid-02 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--separacion);
+}
+
+.flex {
+  display: flex;
+}
+
 /** Degradados **/
 .degradado {
   color: transparent;
@@ -901,6 +911,10 @@ h5 {
 .borrar:hover {
   color: red;
   transform: scale(1.1);
+}
+
+.borrar-tareas h3 {
+  font-size: 1.5rem;
 }
 
 .proyecto-opciones {

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addGantt } from '../../actions/project';
-import Alert from '../layout/Alert';
 
 const AddGantt = ({ match, addGantt }) => {
   const [formData2, setFormData] = useState({
@@ -44,16 +43,7 @@ const AddGantt = ({ match, addGantt }) => {
   return (
     <Fragment>
       <section className='contenedor'>
-        <Alert />
-        <div className='info text-center '>
-          <h1>Grafica de gantt</h1>
-          <p>
-            Crea tu grafica de gantt agregando las tareas y subtareas de
-            proyecto.
-          </p>
-        </div>
         <form className='formulario' onSubmit={(e) => onSubmit(e)}>
-          <h1>Tareas:</h1>
           <div className='grupo'>
             <label htmlFor='TaskID'>ID de la subtarea</label>
             <input

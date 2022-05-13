@@ -8,6 +8,8 @@ import { getProjectById } from '../../actions/project';
 import AddTask from './AddTask';
 import AddSubTask from './AddSubTask';
 import Gantt from '../layout/Gantt';
+import DeleteTask from './DeleteTask';
+import Alert from '../layout/Alert';
 
 const AddGantt = ({
   getProjectById,
@@ -22,6 +24,7 @@ const AddGantt = ({
 
   const [displayInputs, toggleInputs] = useState(false);
   const [displayInputs2, toggleInputs2] = useState(false);
+  const [displayInputs3, toggleInputs3] = useState(false);
 
   return (
     <Fragment>
@@ -41,6 +44,9 @@ const AddGantt = ({
             Regresar a mis proyectos
           </Link>
         </div>
+      </section>
+      <section className='contenedor'>
+        <Alert />
       </section>
       <section className='contenedor formulario-grid'>
         <section className='formulario-grid-01'>
@@ -95,6 +101,34 @@ const AddGantt = ({
           </div>
           {displayInputs2 && <AddSubTask match={match} />}
         </section>
+      </section>
+      <section className='contenedor'>
+        <div className='info text-center'>
+          <h1 onClick={() => toggleInputs3(!displayInputs3)} type='button'>
+            Borrar una tarea o subtarea
+          </h1>
+          <h3>Opcional *</h3>
+          <p>
+            Borre las tareas o subtareas que ya no se necesitan o por
+            simplemente ser un error.
+          </p>
+        </div>
+        <div className='text-center plus'>
+          {displayInputs3 ? (
+            <i
+              onClick={() => toggleInputs3(false)}
+              className='fas fa-minus-circle'
+            ></i>
+          ) : (
+            <i
+              onClick={() => toggleInputs3(true)}
+              className='fas fa-plus-circle'
+            ></i>
+          )}
+        </div>
+        {displayInputs3 && (
+          <DeleteTask match={match} refSelfData={refSelfData} />
+        )}
       </section>
       <Gantt refSelfData={refSelfData} />
     </Fragment>

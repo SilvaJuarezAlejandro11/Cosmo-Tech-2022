@@ -19,7 +19,7 @@ import ProjectImages from './ProjectImages';
 import ProjectTopDetails from './ProjectTopDetails';
 import { Link } from 'react-router-dom';
 import ProjectSideBar from './ProjectSideBar';
-import ProjectGantt from './ProjectGantt';
+import Gantt from '../layout/Gantt';
 const Project = ({
   project: { project, loading },
   auth,
@@ -100,7 +100,9 @@ const Project = ({
 
               {(project.refSelfData.length !== 0 ||
                 project.refSelfData.length > 0) && (
-                <ProjectGantt project={project} />
+                <section className='gantt-detalle'>
+                  <Gantt refSelfData={project.refSelfData} />
+                </section>
               )}
             </section>
             <ProjectSideBar project={project} />

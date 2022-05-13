@@ -21,7 +21,7 @@ const Landing = () => {
     <>
       <Main
         titulo='¡Bienvenido a Cosmo-Tech!'
-        descripcion='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+        descripcion='El lugar donde las innovaciones no paran de sorprendernos.'
       >
         <a href='#iniciarSesion' className='btn'>
           Iniciar Sesión
@@ -34,7 +34,7 @@ const Landing = () => {
         <div className='text-center info'>
           <h1>¡Visualiza proyectos escolares!</h1>
           <p>
-            Aqui podras checar los proyectos relacionados a la vocacional,tanto
+            Aqui podras checar los proyectos realizados en las escuelas, tanto
             de los estudiantes que actualmente cursan como de los habilidosos
             profesores{' '}
           </p>
@@ -48,7 +48,7 @@ const Landing = () => {
           <h1>¡Comparte tus proyectos!</h1>
           <p>
             Si eres un estudiante, ven y registrate, y se parte de la grandiosa
-            comunidad que se ayuda mutuamente y compartes tus conocimientos con
+            comunidad que se ayuda mutuamente y comparte tus conocimientos con
             otros, Registrate justo en el apartado de abajo.{' '}
           </p>
           <div className='iconos'>

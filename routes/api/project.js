@@ -649,12 +649,24 @@ router.put(
 
     try {
       const project = await Project.findOne({ _id: req.params.pro_id });
+      console.log(
+        project.refSelfData.filter((data) => data.TaskID === newTask.TaskID)
+          .length > 0
+      );
+      if (
+        project.refSelfData.filter((data) => data.TaskID === newTask.TaskID)
+          .length > 0
+      ) {
+        return res.status(400).json({
+          errors: [{ msg: 'Este ID ya se esta usando.' }],
+        });
+      } else {
+        project.refSelfData.unshift(newTask);
 
-      project.refSelfData.unshift(newTask);
+        await project.save();
 
-      await project.save();
-
-      res.json(project);
+        res.json(project);
+      }
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
