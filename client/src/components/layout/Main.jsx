@@ -12,7 +12,7 @@ const Main = ({ titulo, descripcion, children }) => {
             <h1 className='degradado'>{titulo}</h1>
           </div>
           <div className='batizLab-descripcion'>
-            <p>{descripcion}</p>
+            <p>El lugar donde las innovaciones no paran de sorprendernos.</p>
           </div>
           <div className='main-opciones'>{children}</div>
         </div>

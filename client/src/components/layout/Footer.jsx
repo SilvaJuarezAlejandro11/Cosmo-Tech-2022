@@ -8,30 +8,30 @@ const Footer = ({ auth: { type } }) => {
       <nav className='footer'>
         <div className='titulo'>
           <h1>
-            <Link to={`${type ? '/menu' : '/'}`}>BatizLab</Link>
+            <Link to={`${type ? '/menu' : '/'}`}>Cosmo-Tech</Link>
           </h1>
         </div>
         <div className='vinculos'>
           <div className='social'>
             <i className='fab fa-facebook'></i>
-            <a href='https://facebook.com'>BatizLab</a>
+            <a href='https://facebook.com'>Cosmo-Tech</a>
           </div>
           <div className='social'>
             <i className='fab fa-instagram'></i>
-            <a href='https://instagram.com'>BatizLab</a>
+            <a href='https://instagram.com'>Cosmo-Tech</a>
           </div>
           <div className='social'>
             <i className='fab fa-linkedin'></i>
-            <a href='https://linkedin.com'>BatizLab</a>
+            <a href='https://linkedin.com'>Cosmo-Tech</a>
           </div>
           <div className='social'>
             <i className='fab fa-google'></i>
-            <a href='https://google.com'>BatizLab@gmail.com</a>
+            <a href='https://google.com'>Cosmo-Tech@gmail.com</a>
           </div>
         </div>
       </nav>
       <div className='copyright text-center'>
-        <p>BatizLab 2020-22 Derechos Reservados</p>
+        <p>Cosmo-Tech 2020-22 Derechos Reservados</p>
       </div>
     </footer>
   );

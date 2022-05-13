@@ -3,8 +3,8 @@ exports.projectData = [
   {
     TaskID: 1,
     TaskName: 'Project Initiation',
-    StartDate: '2020-04-05T05:00:00.000+00:00',
-    EndDate: '2020-04-15T05:00:00.000Z',
+    StartDate: new Date('04/02/2020'),
+    EndDate: new Date('04/21/2020'),
     subtasks: [
       {
         TaskID: 2,

@@ -47,7 +47,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, type }, logout }) => {
       <nav className='header'>
         <div className='titulo'>
           <h1>
-            <Link to={`${type ? '/menu' : '/'}`}>BatizLab</Link>
+            <Link to={`${type ? '/menu' : '/'}`}>Cosmo-Tech</Link>
           </h1>
         </div>
         <div className='vinculos'>

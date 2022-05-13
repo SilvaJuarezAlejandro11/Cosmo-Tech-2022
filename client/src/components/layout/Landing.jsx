@@ -20,7 +20,7 @@ const Landing = () => {
   return (
     <>
       <Main
-        titulo='¡Bienvenido a BatizLab!'
+        titulo='¡Bienvenido a Cosmo-Tech!'
         descripcion='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
       >
         <a href='#iniciarSesion' className='btn'>
@@ -32,12 +32,11 @@ const Landing = () => {
       </Main>
       <section className='introduccion contenedor'>
         <div className='text-center info'>
-          <h1>¡Visualiza proyectos del CECyT 9!</h1>
+          <h1>¡Visualiza proyectos escolares!</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            earum porro voluptatem! Voluptas vel quasi eius et magni ratione
-            eos. Iure, earum. Quos voluptatem voluptate voluptatum cupiditate
-            maxime, minus culpa?
+            Aqui podras checar los proyectos relacionados a la vocacional,tanto
+            de los estudiantes que actualmente cursan como de los habilidosos
+            profesores{' '}
           </p>
           <div className='iconos'>
             <img src={ver} className='icono' alt='ojo' />
@@ -48,10 +47,9 @@ const Landing = () => {
         <div className='text-center info'>
           <h1>¡Comparte tus proyectos!</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod nobis
-            quasi nihil veniam earum velit dolorem explicabo, voluptatum unde
-            dolores, rerum tempora voluptates repellat aliquam. Eaque
-            consequatur laborum ea doloremque.
+            Si eres un estudiante, ven y registrate, y se parte de la grandiosa
+            comunidad que se ayuda mutuamente y compartes tus conocimientos con
+            otros, Registrate justo en el apartado de abajo.{' '}
           </p>
           <div className='iconos'>
             <img className='icono' src={compartir} alt='compartir' />
@@ -62,7 +60,7 @@ const Landing = () => {
       <section className='contenedor'>
         <div className='info text-center ' id='iniciarSesion'>
           <h1>¡Ingresa ahora!</h1>
-          <p>Lorem ipsum dolor sit amet consectetur,</p>
+          <p>Revisa como quieres ingresar aqui abajo.</p>
         </div>
         <div className='opciones'>
           {user || student || teacher ? (
@@ -74,10 +72,11 @@ const Landing = () => {
               onClick={(e) => setLogin(true)}
               className='opcion iniciar-sesion'
             >
-              <div className=' text-center'>
+              <div className='text-center'>
                 <h1 className='degradado relative'>Iniciar Sesión</h1>
                 <p className='relative'>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Ingresa nuevamente para seguir explorando las funciones que
+                  Cosmo-Tech te da.
                 </p>
               </div>
             </button>
@@ -91,7 +90,8 @@ const Landing = () => {
               <div className='text-center'>
                 <h1 className='degradado relative'>Invitado</h1>
                 <p className='relative'>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Explora, descubre y descarga nuevos proyectos para probarlos
+                  en tu mismo dispositivo.
                 </p>
               </div>
             </button>
@@ -108,8 +108,8 @@ const Landing = () => {
               <div className='text-center'>
                 <h1 className='degradado relative'>Estudiante</h1>
                 <p className='relative'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Expedita.
+                  Crea y comparte tus proyectos. Hazte conocer en el mundo
+                  técnologico.
                 </p>
               </div>
             </button>
@@ -127,8 +127,8 @@ const Landing = () => {
                 <div>
                   <h1 className='degradado relative'>Profesor</h1>
                   <p className='relative'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Officia doloribus.
+                    Revisa, ayuda y apoya a tus alumno. Guialos a ser
+                    profesionales.
                   </p>
                 </div>
               </div>
