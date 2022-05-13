@@ -20,9 +20,8 @@ import {projectData} from '../pruebas/data'
     endDate: 'EndDate',
     duration: 'Duration',
     progress: 'Progress',
-    parentID: 'ParentId',
-    // child: 'subtasks',
-    // dependency: 'Predeceesor',
+    child: 'subtasks',
+    dependency: 'Predeceesor',
   };
 
   const toolbarBtnClick=(args: any) =>{
