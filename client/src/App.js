@@ -23,7 +23,7 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import CreateProject from './components/project-forms/CreateProject';
 import EditProject from './components/project-forms/EditProject';
-import AddGantt from './components/project-forms/AddGantt';
+import AddGantt from './components/project-forms/AddGantt.jsx';
 import Project from './components/project/Project';
 import Verification from './components/auth/Verification';
 import VerificationProcess from './components/auth/VerificationProcess';

@@ -4,17 +4,10 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProjectById } from '../../actions/project';
-import {
-  GanttComponent,
-  TaskFieldsModel,
-  ColumnsDirective,
-  ColumnDirective,
-  Inject,
-  Toolbar,
-  PdfExport,
-} from '@syncfusion/ej2-react-gantt';
+
 import AddTask from './AddTask';
 import AddSubTask from './AddSubTask';
+import Gantt from '../layout/Gantt';
 
 const AddGantt = ({
   getProjectById,
@@ -29,18 +22,6 @@ const AddGantt = ({
 
   const [displayInputs, toggleInputs] = useState(false);
   const [displayInputs2, toggleInputs2] = useState(false);
-
-  const taskValues: TaskFieldsModel = {
-    id: 'TaskID',
-    name: 'TaskName',
-    startDate: 'StartDate',
-    endDate: 'EndDate',
-    duration: 'Duration',
-    progress: 'Progress',
-    parentID: 'ParentId',
-    // child: 'subtasks',
-    // dependency: 'Predeceesor',
-  };
 
   return (
     <Fragment>
@@ -115,36 +96,7 @@ const AddGantt = ({
           {displayInputs2 && <AddSubTask match={match} />}
         </section>
       </section>
-      <section className='contenedor'>
-        <div className='text-center'>
-          <h1>Grafica de Gantt del proyecto</h1>
-        </div>
-        <div className='gantt'>
-          <GanttComponent
-            dataSource={refSelfData}
-            taskFields={taskValues}
-            toolbar={['ExpandAll', 'CollapseAll', 'PdfExport']}
-            allowPdfExport={true}
-          >
-            <Inject services={[Toolbar, PdfExport]}></Inject>
-            <ColumnsDirective>
-              <ColumnDirective field='TaskID' headerText='ID'></ColumnDirective>
-              <ColumnDirective
-                field='TaskName'
-                headerText='Name'
-              ></ColumnDirective>
-              <ColumnDirective
-                field='StartDate'
-                format='dd-MMM-yy'
-              ></ColumnDirective>
-              <ColumnDirective
-                field='Duration'
-                textAlign='Right'
-              ></ColumnDirective>
-            </ColumnsDirective>
-          </GanttComponent>
-        </div>
-      </section>
+      <Gantt refSelfData={refSelfData} />
     </Fragment>
   );
 };
