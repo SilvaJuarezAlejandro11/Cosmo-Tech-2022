@@ -56,6 +56,9 @@ export const getProjectById = (proId) => async (dispatch) => {
     const res = await axios.get(`/api/projects/${proId}`);
 
     dispatch({
+      type: CLEAR_PROJECT,
+    });
+    dispatch({
       type: GET_PROJECT,
       payload: res.data,
     });
@@ -115,7 +118,6 @@ export const updateProject = (data, proId) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(getCurrentProjects());
     dispatch(setAlert('Proyecto Editado!', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
@@ -130,7 +132,7 @@ export const updateProject = (data, proId) => async (dispatch) => {
         status: err.response.status,
       },
     });
-    dispatch(getCurrentProjects());
+    dispatch(getProjectById(proId));
   }
 };
 
