@@ -28,7 +28,7 @@ const Profiles = ({ getProfiles, loading, users, students, teachers }) => {
     <Fragment>
       <Main
         titulo='Nuestra Comunidad'
-        descripcion='Busca el proyecto que necesites a través del perfil del usuario.'
+        descripcion='Explora y conoce quienes conforman nuestra comunidad. Lenguajes que dominan, historial academico o laboral y sus proyectos personales.'
       ></Main>
       {loading ? (
         <Spinner />

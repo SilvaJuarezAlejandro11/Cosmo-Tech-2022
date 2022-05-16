@@ -5,13 +5,7 @@ import estudiantePerfil from '../../img/estudianteperfil.svg';
 import profesorPerfil from '../../img/profesorperfil.svg';
 
 const ProfileTop = ({
-  profile: {
-    skills,
-    education,
-    experience,
-    githubusername,
-    user: { name },
-  },
+  profile: { skills, education, experience, githubusername, fullname },
 }) => {
   return (
     <Fragment>
@@ -27,7 +21,7 @@ const ProfileTop = ({
         </div>
         <div className='mi-perfil-info text-center'>
           <div className='mi-perfil-datos'>
-            <h2>{name}</h2>
+            <h2>{fullname}</h2>
             <h3>
               <i className='fab fa-github'></i>{' '}
               {githubusername ? githubusername : ''}

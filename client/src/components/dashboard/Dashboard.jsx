@@ -31,7 +31,7 @@ const Dashboard = ({
     <Fragment>
       <Main
         titulo='Mi perfil'
-        descripcion='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+        descripcion='Este es tu perfil, di nos quien eres, tus habilidades y tus estudios. Comparte tus proyectos personales a través de tu cuenta de github y ¡date a conocer!.'
       >
         <Link to='/profiles' className='btn'>
           Otros perfiles
