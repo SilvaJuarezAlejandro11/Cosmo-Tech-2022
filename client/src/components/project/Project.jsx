@@ -33,17 +33,19 @@ const Project = ({
   return (
     <Fragment>
       <Main titulo={project.title} descripcion={project.period}>
-        <div className='batizLab-autores'>
-          {project.length === 0 || loading || project.length >= 1
-            ? ''
-            : project.authors.map((author, index) => (
-                <Fragment key={index}>
-                  <h3 className='nombre'>
-                    <i className='fas fa-user'></i> {author}
-                  </h3>
-                </Fragment>
-              ))}
-        </div>
+        <Fragment>
+          <div className='batizLab-autores'>
+            {project.length === 0 || loading || project.length >= 1
+              ? ''
+              : project.authors.map((author, index) => (
+                  <Fragment key={index}>
+                    <h3 className='nombre'>
+                      <i className='fas fa-user'></i> {author}
+                    </h3>
+                  </Fragment>
+                ))}
+          </div>
+        </Fragment>
       </Main>
       {project.length === 0 || loading || project.length >= 1 ? (
         <Spinner />

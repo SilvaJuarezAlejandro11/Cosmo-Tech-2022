@@ -60,7 +60,7 @@ const ProjectTopDetails = ({
                   {requirements.map((requirement, index) => (
                     <Fragment key={index}>
                       <h3 className='nombre'>
-                        <i className='fas fa-user'></i> {requirement}
+                        <i className='fas fa-circle'></i> {requirement}
                       </h3>
                     </Fragment>
                   ))}
