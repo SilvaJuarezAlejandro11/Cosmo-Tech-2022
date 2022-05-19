@@ -2,6 +2,6 @@
   "mongoURI": "mongodb+srv://Silpar55:Silpar55@cluster0.zemo0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "jwtSecret": "MiTokenSecreto",
   "AUTH_EMAIL":"batiz.lab.spankybot@gmail.com",
-  "AUTH_PASS":"Elgato66"
-
+  "AUTH_PASS":"Elgato66",
+  "githubSecret":"8686efc3bc95b86449aee55ed30b7374af3fb50b"
 }
