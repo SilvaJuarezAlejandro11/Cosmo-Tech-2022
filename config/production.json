@@ -3,5 +3,6 @@
   "jwtSecret": "MiTokenSecreto",
   "AUTH_EMAIL":"batiz.lab.spankybot@gmail.com",
   "AUTH_PASS":"Elgato66",
-  "githubSecret":"8686efc3bc95b86449aee55ed30b7374af3fb50b"
+  "githubSecret":"8686efc3bc95b86449aee55ed30b7374af3fb50b",
+  "githubClientId":"e55870c9441e93bb9a40"
 }
