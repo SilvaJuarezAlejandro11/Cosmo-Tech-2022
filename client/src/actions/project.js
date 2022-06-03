@@ -10,6 +10,7 @@ import {
   EDIT_FAIL,
   CREATE_FAIL,
 } from './types';
+import { loadUser } from './auth';
 
 //? Obtener todos los proyectos
 
@@ -70,6 +71,46 @@ export const getProjectById = (proId) => async (dispatch) => {
   }
 };
 
+//? Obtener el proyecto a través del ShareID
+
+export const getProjectByShareId = (userId, shareID) => async (dispatch) => {
+  try {
+    await axios.put(`/api/projects/${userId}/${shareID}`);
+
+    dispatch(loadUser());
+    dispatch(setAlert('!Proyecto Añadido!', 'success'));
+  } catch (err) {
+    console.error(err);
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+  }
+};
+
+//? Obtener el proyecto a través del ShareID
+
+export const deleteProjectByShareId = (userId, shareID) => async (dispatch) => {
+  if (
+    window.confirm(
+      '¿Estas seguro de dejar de seguir este proyecto? Tendrá que ingresar el codigo de nuevo para volver tenerlo.'
+    )
+  ) {
+    try {
+      await axios.delete(`/api/projects/${userId}/${shareID}`);
+
+      dispatch(loadUser());
+      dispatch(setAlert('!Proyecto borrado!', 'success'));
+    } catch (err) {
+      console.error(err);
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      }
+    }
+  }
+};
+
 export const createProject = (data, history) => async (dispatch) => {
   try {
     const config = {
@@ -85,7 +126,7 @@ export const createProject = (data, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert('Proyecto Agregado!', 'success'));
+    dispatch(setAlert('!Proyecto Agregado!', 'success'));
     history.push('/me/projects');
   } catch (err) {
     const errors = err.response.data.errors;
@@ -118,7 +159,7 @@ export const updateProject = (data, proId) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert('Proyecto Editado!', 'success'));
+    dispatch(setAlert('!Proyecto Editado!', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -146,7 +187,7 @@ export const addGantt = (formData, proId) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     };
-    const res = await axios.put(
+    const res = await axios.post(
       `/api/projects/gantt/${proId}`,
       formData,
       config

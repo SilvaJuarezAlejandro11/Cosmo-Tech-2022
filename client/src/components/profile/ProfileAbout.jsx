@@ -96,17 +96,23 @@ const ProfileAbout = ({
             <h2>Experiencia laboral:</h2>
             {auth.type === 'teacherType' ? (
               <Fragment>
-                <div className='text-center plus' id='plus2'>
-                  {exp ? (
-                    <button onClick={(e) => setExp(false)}>
-                      <i className='fas fa-minus-circle'></i>
-                    </button>
-                  ) : (
-                    <button onClick={(e) => setExp(true)}>
-                      <i className='fas fa-plus-circle'></i>
-                    </button>
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === _id && (
+                    <div className='text-center plus' id='plus2'>
+                      {exp ? (
+                        <i
+                          onClick={(e) => setExp(false)}
+                          className='fas fa-minus-circle'
+                        ></i>
+                      ) : (
+                        <i
+                          onClick={(e) => setExp(true)}
+                          className='fas fa-plus-circle'
+                        ></i>
+                      )}
+                    </div>
                   )}
-                </div>
                 {exp && <AddExperience setExp={setExp} />}
               </Fragment>
             ) : (

@@ -27,7 +27,7 @@ import AddGantt from './components/project-forms/AddGantt.jsx';
 import Project from './components/project/Project';
 import Verification from './components/auth/Verification';
 import VerificationProcess from './components/auth/VerificationProcess';
-
+import ProjectFollow from './components/teacher-projects/ProjectFollow';
 //? Redux
 
 import { Provider } from 'react-redux';
@@ -74,6 +74,11 @@ function App() {
             />
             <PrivateRoute exact path='/menu' component={Projects} />
             <PrivateRoute exact path='/me/projects' component={MyProjects} />
+            <PrivateRoute
+              exact
+              path='/me/projects-followed'
+              component={ProjectFollow}
+            />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <PrivateRoute
               exact

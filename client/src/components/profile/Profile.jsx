@@ -27,8 +27,24 @@ const Profile = ({
   return (
     <Fragment>
       <Main
-        titulo='Mi perfil'
-        descripcion='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+        titulo={`${
+          profile === null
+            ? '...'
+            : auth.isAuthenticated &&
+              auth.loading === false &&
+              auth.user._id === profile.user._id
+            ? 'Mi perfil'
+            : profile.fullname
+        }`}
+        descripcion={`Este es ${
+          profile === null
+            ? '...'
+            : auth.isAuthenticated &&
+              auth.loading === false &&
+              auth.user._id === profile.user._id
+            ? 'tu perfil, pon tus proyectos hechos por ti y date a conocer en esta comunidad.'
+            : `el perfil de ${profile.fullname}, conocelo y ve sus obras más notorias`
+        }`}
       >
         <Link to='/profiles' className='btn'>
           Otros perfiles

@@ -42,7 +42,7 @@ const Login = ({ login, isAuthenticated, setLogin }) => {
       <div className='text-center'>
         <div className='info text-center '>
           <h1>Iniciar Sesión</h1>
-          <p>Lorem ipsum dolor sit amet consectetur,</p>
+          <p>Ingrese sus datos correctamente.</p>
         </div>
         <Alert />
         <form onSubmit={(e) => onSubmit(e)} className='formulario'>

@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
+const shortid = require('shortid');
 
 const ProjectSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'student',
+  },
+  share_ID: {
+    type: String,
+    default: shortid.generate,
   },
   title: {
     type: String,

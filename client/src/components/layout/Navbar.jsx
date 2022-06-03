@@ -20,6 +20,11 @@ const Navbar = ({ auth: { isAuthenticated, loading, type }, logout }) => {
       ) : (
         ''
       )}
+      {type === 'teacherType' ? (
+        <Link to='/me/projects-followed'>Seguimiento</Link>
+      ) : (
+        ''
+      )}
       <Link onClick={logout} to='/'>
         <i className='fas fa-sign-out-alt'></i>
       </Link>

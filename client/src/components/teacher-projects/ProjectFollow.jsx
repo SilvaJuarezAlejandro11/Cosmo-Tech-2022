@@ -1,26 +1,40 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../layout/spinner/Spinner';
+import Alert from '../layout/Alert';
 import Main from '../layout/Main';
-import Project from './Project';
-import { getProjects } from '../../actions/project';
+import MyProject from '../my-projects/MyProject';
+import { getProjectByShareId } from '../../actions/project';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Projects = ({
-  getProjects,
-  project: { projects, loading },
-  auth: { isAuthenticated, type },
-}) => {
-  useEffect(() => {
-    isAuthenticated && getProjects();
-  }, [getProjects, isAuthenticated]);
-
+const ProjectFollow = ({ auth, getProjectByShareId }) => {
   const [search, updateSearch] = useState('');
   const [formFilter, setFormFilter] = useState({
     languajeFilter: '',
     periodFilter: '',
     semesterFilter: '',
   });
+
+  const [code, setCode] = useState({
+    shareID: '',
+  });
+
+  const { shareID } = code;
+
+  const onChange2 = (e) => {
+    setCode({
+      ...code,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    getProjectByShareId(auth.user._id, code.shareID);
+    console.log(auth.user._id);
+    console.log(code.shareID);
+  };
 
   const { languajeFilter, periodFilter, semesterFilter } = formFilter;
 
@@ -31,10 +45,34 @@ const Projects = ({
   return (
     <Fragment>
       <Main
-        titulo='Bienvenido a la Comunidad'
-        descripcion='Estos son los proyectos recomendados por los profesores'
-      ></Main>
-      {loading ? (
+        titulo='¡Aquí estan tus proyectos!'
+        descripcion='En esta sección puedes gestionar tus proyectos.'
+      >
+        <form className='codigo' onSubmit={(e) => onSubmit(e)}>
+          <Alert />
+          <div className='grupo'>
+            <h2 className='codigo-titulo'>
+              Ingrese un proyecto en el que estas invitado
+            </h2>
+          </div>
+          <div className='label-flex'>
+            <label htmlFor='project-share'>
+              Codigo para proyecto colaborativo:
+            </label>
+            <input
+              type='text'
+              name='shareID'
+              value={shareID}
+              id='project-share'
+              onChange={(e) => onChange2(e)}
+            />
+          </div>
+          <div className='grupo acciones'>
+            <input type='submit' className='btn' value='Añadir' />
+          </div>
+        </form>
+      </Main>
+      {auth.loading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -126,72 +164,87 @@ const Projects = ({
               </div>
             </form>
           </section>
+          <Alert />
+          <div className='text-center proyecto-info'>
+            <h1>Proyectos compartidos</h1>
+            <h3>
+              Visualiza y checa los proyectos de tu interes o de tus alumnos, ve
+              y retroalimenta su aprendizaje a traves de su trabajo.
+            </h3>
+          </div>
           <section className='contenedor proyectos'>
-            {projects.length > 0 ? (
-              projects
-                // eslint-disable-next-line array-callback-return
-                .filter((project) => {
-                  if (
-                    periodFilter === '' &&
-                    search === '' &&
-                    semesterFilter === '' &&
-                    languajeFilter === ''
-                  ) {
-                    return project;
-                  } else if (
-                    (project.title
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                      project.authors
-                        .join(',')
+            {auth.user.project_shared.length > 0
+              ? auth.user.project_shared
+                  // eslint-disable-next-line array-callback-return
+                  .filter((project) => {
+                    if (
+                      periodFilter === '' &&
+                      search === '' &&
+                      semesterFilter === '' &&
+                      languajeFilter === ''
+                    ) {
+                      return project;
+                    } else if (
+                      (project.title
                         .toLowerCase()
                         .includes(search.toLowerCase()) ||
-                      project.steps
+                        project.authors
+                          .join(',')
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        project.steps
+                          .join(',')
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        project.requirements
+                          .join(',')
+                          .toLowerCase()
+                          .includes(search.toLowerCase())) &&
+                      project.period
+                        .toLowerCase()
+                        .includes(periodFilter.toLowerCase()) &&
+                      project.semester
+                        .toLowerCase()
+                        .includes(semesterFilter.toLowerCase()) &&
+                      project.languajes
                         .join(',')
                         .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      project.requirements
-                        .join(',')
-                        .toLowerCase()
-                        .includes(search.toLowerCase())) &&
-                    project.period
-                      .toLowerCase()
-                      .includes(periodFilter.toLowerCase()) &&
-                    project.semester
-                      .toLowerCase()
-                      .includes(semesterFilter.toLowerCase()) &&
-                    project.languajes
-                      .join(',')
-                      .toLowerCase()
-                      .includes(languajeFilter.toLowerCase())
-                  ) {
-                    return project;
-                  }
-                })
-                .map((project) => (
-                  <Project key={project._id} project={project} type={type} />
-                ))
-            ) : (
-              <h4>No hay proyectos ...</h4>
-            )}
+                        .includes(languajeFilter.toLowerCase())
+                    ) {
+                      return project;
+                    }
+                  })
+                  .map((project) => (
+                    <MyProject
+                      key={project._id}
+                      project={project}
+                      isShared={true}
+                      user_id={auth.user._id}
+                      type={auth.type}
+                    />
+                  ))
+              : 'No hay proyectos compartidos'}
           </section>
-
-          <h5 className='text-center'>Ya no hay más proyectos</h5>
+          <section className='contenedor mi-proyecto'>
+            <Link to='/menu'>
+              <div className='proyecto text-center'>
+                <h1>Buscar Proyectos</h1>
+                <i className='fas fa-search'></i>
+              </div>
+            </Link>
+          </section>
         </Fragment>
       )}
     </Fragment>
   );
 };
 
-Projects.propTypes = {
-  getProjects: PropTypes.func.isRequired,
-  project: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+ProjectFollow.propTypes = {
+  getProjectByShareId: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  project: state.project,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProjects })(Projects);
+export default connect(mapStateToProps, { getProjectByShareId })(ProjectFollow);

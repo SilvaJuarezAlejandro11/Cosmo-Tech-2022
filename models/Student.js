@@ -32,6 +32,9 @@ const StudentSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  project_shared: {
+    type: Array,
+  },
   date: {
     type: Date,
     default: Date.now,

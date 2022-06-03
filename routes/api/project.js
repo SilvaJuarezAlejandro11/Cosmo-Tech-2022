@@ -4,6 +4,8 @@ const { check, validationResult } = require('express-validator');
 const Project = require('../../models/Project');
 const auth = require('../../middleware/auth');
 const upload = require('../../middleware/upload');
+const Teacher = require('../../models/Teacher');
+const Student = require('../../models/Student');
 
 //* @desc Obtener mis proyectos
 //* @route GET api/projects/me
@@ -387,8 +389,6 @@ router.post(
 
     const projectFields = {};
 
-    projectFields.user = req.user.id;
-
     if (title) projectFields.title = title;
     if (languajes) {
       projectFields.languajes = languajes
@@ -601,11 +601,147 @@ router.get('/:pro_id', auth, async (req, res) => {
   }
 });
 
+//* @desc Obtener un proyecto por share_ID
+//* @route PUT api/projects/:user_id/:share_id
+//* @access Private
+
+//? Corregido y listo para front-end
+
+router.put('/:user_id/:share_id', auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array(),
+    });
+  }
+  try {
+    const project = await Project.findOne({
+      share_ID: req.params.share_id,
+    });
+
+    if (project.user._id.toString() === req.params.user_id)
+      return res.status(400).json({
+        errors: [{ msg: 'Usted es el dueño de este proyecto.' }],
+      });
+
+    if (!project)
+      return res.status(400).json({
+        errors: [{ msg: 'No se encontro ningun proyecto' }],
+      });
+
+    let student = await Student.findById(req.params.user_id);
+    if (student) {
+      if (
+        student.project_shared.filter(
+          (pro) => pro.share_ID === req.params.share_id
+        ).length > 0
+      ) {
+        return res.status(400).json({
+          errors: [{ msg: 'Usted ya tiene este proyecto compartido' }],
+        });
+      }
+
+      student.project_shared.unshift(project);
+
+      await student.save();
+      return res.json(student);
+    }
+
+    let teacher = await Teacher.findById(req.params.user_id);
+    if (teacher) {
+      if (
+        teacher.project_shared.filter(
+          (pro) => pro.share_ID === req.params.share_id
+        ).length > 0
+      ) {
+        return res.status(400).json({
+          errors: [{ msg: 'Usted ya tiene este proyecto compartido' }],
+        });
+      }
+
+      teacher.project_shared.unshift(project);
+
+      await teacher.save();
+      return res.json(teacher);
+    }
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({
+        errors: [{ msg: 'No se encontro ningun proyecto' }],
+      });
+    }
+    res.status(500).send('Error en el servidor.');
+  }
+});
+
+//* @desc Dejar de seguir un proyecto por share_ID
+//* @route DELETE api/projects/:user_id/:share_id
+//* @access Private
+
+router.delete('/:user_id/:share_id', auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array(),
+    });
+  }
+  try {
+    let student = await Student.findById(req.params.user_id);
+    if (student) {
+      if (
+        student.project_shared.filter(
+          (pro) => pro.share_ID === req.params.share_id
+        ).length === 0
+      ) {
+        return res.status(400).json({
+          errors: [{ msg: 'Usted no tiene este proyecto compartido' }],
+        });
+      }
+
+      student.project_shared = student.project_shared.filter(
+        (pro) => pro.share_ID !== req.params.share_id
+      );
+
+      await student.save();
+      return res.json(student);
+    }
+
+    let teacher = await Teacher.findById(req.params.user_id);
+    if (teacher) {
+      if (
+        teacher.project_shared.filter(
+          (pro) => pro.share_ID === req.params.share_id
+        ).length === 0
+      ) {
+        return res.status(400).json({
+          msg: 'Usted no tiene este proyecto compartido',
+        });
+      }
+
+      teacher.project_shared = teacher.project_shared.filter(
+        (pro) => pro.share_ID !== req.params.share_id
+      );
+
+      await teacher.save();
+      return res.json(teacher);
+    }
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({
+        msg: 'No se encontro ningun proyecto',
+      });
+    }
+    res.status(500).send('Error en el servidor.');
+  }
+});
+
 //* @desc Crear Tareas o Sub tareas
 //* @route UPDATE api/projects
 //* @access Private
 
-router.put(
+router.post(
   '/gantt/:pro_id',
   [
     auth,
@@ -644,8 +780,6 @@ router.put(
       Progress: Progress ? parseInt(Progress) : '',
       ParentId: ParentId ? parseInt(ParentId) : '',
     };
-
-    console.log(newTask);
 
     try {
       const project = await Project.findOne({ _id: req.params.pro_id });
